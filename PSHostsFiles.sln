@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSHostsFiles", "PSHostsFiles\PSHostsFiles.csproj", "{414C9C89-E5C9-426E-A2E9-DA0A755372C0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PSHostsFilesTest", "PSHostsFilesTest\PSHostsFilesTest.csproj", "{60B55F08-B5A2-4508-B7F7-C32DD637745C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{414C9C89-E5C9-426E-A2E9-DA0A755372C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{414C9C89-E5C9-426E-A2E9-DA0A755372C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{414C9C89-E5C9-426E-A2E9-DA0A755372C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{414C9C89-E5C9-426E-A2E9-DA0A755372C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60B55F08-B5A2-4508-B7F7-C32DD637745C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60B55F08-B5A2-4508-B7F7-C32DD637745C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60B55F08-B5A2-4508-B7F7-C32DD637745C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60B55F08-B5A2-4508-B7F7-C32DD637745C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
