@@ -10,8 +10,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>PSHostsFilesTest</RootNamespace>
     <AssemblyName>PSHostsFilesTest</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -47,10 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddTest.cs" />
     <Compile Include="GetTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadWriteScenario.cs" />
     <Compile Include="RemoveTest.cs" />
     <Compile Include="SampleHostsFile.cs" />
+    <Compile Include="TransformOperationTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PSHostsFiles\PSHostsFiles.csproj">

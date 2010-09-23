@@ -3,8 +3,18 @@ using System.Text.RegularExpressions;
 
 namespace PSHostsFiles
 {
-    public class HostsFileEntryRegex
+    public class HostsFileUtil
     {
+        static public bool IsLineAHostFilesEntry(string line)
+        {
+            if (line.Trim().Length == 0)
+                return false;
+            else if (line.TrimStart().StartsWith("#"))
+                return false;
+            else
+                return true;
+        }
+
         static public HostsFileEntry GetHostsFileEntry(string line)
         {
             var result = TryGetHostsFileEntry(line);
@@ -29,6 +39,6 @@ namespace PSHostsFiles
                 };
         }
 
-        static Regex RegexHostsEntry = new Regex(@"\s*(?<address>\S+)\s+(?<name>\S+)\s*", RegexOptions.Compiled);
+        static Regex RegexHostsEntry = new Regex(@"^\s*(?<address>\S+)\s+(?<name>\S+)\s*($|#)", RegexOptions.Compiled);
     }
 }

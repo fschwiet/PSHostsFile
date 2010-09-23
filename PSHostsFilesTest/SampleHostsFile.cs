@@ -29,7 +29,7 @@ namespace PSHostsFilesTest
 #	127.0.0.1       localhost
 #	::1             localhost
 
-127.0.0.1           www.testserver.com
+127.0.0.1           www.testserver.com  # CAREFUL: special case when line has comment
 192.168.1.1         anotherserver.net
 
 ";

@@ -15,12 +15,10 @@ namespace PSHostsFiles
 
             while((line = input.ReadLine()) != null)
             {
-                if (line.Trim().Length == 0)
-                    continue;
-                else if (line.TrimStart().StartsWith("#"))
+                if (! HostsFileUtil.IsLineAHostFilesEntry(line))
                     continue;
 
-                results.Add(HostsFileEntryRegex.GetHostsFileEntry(line));
+                results.Add(HostsFileUtil.GetHostsFileEntry(line));
             }
 
             return results;

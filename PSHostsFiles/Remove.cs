@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PSHostsFiles
 {
-    public class Remove
+    public class Remove : TransformOperation
     {
         public void RemoveFromStream(string serverName, StreamReader hostsFile, StreamWriter results)
         {
@@ -13,7 +13,7 @@ namespace PSHostsFiles
 
             while ((line = hostsFile.ReadLine()) != null)
             {
-                var match = HostsFileEntryRegex.TryGetHostsFileEntry(line);
+                var match = HostsFileUtil.TryGetHostsFileEntry(line);
 
                 if (match == null)
                     results.WriteLine(line);
@@ -26,19 +26,7 @@ namespace PSHostsFiles
 
         public void RemoveFromFile(string hostName, string hostsPath)
         {
-            var ms = new MemoryStream();
-            StreamReader streamReader;
-
-            using (var file = File.Open(hostsPath, FileMode.Open, FileAccess.Read))
-            {
-                streamReader = new StreamReader(file);
-                streamReader.Peek();
-                RemoveFromStream(hostName, streamReader, new StreamWriter(ms, streamReader.CurrentEncoding));
-            }
-
-            File.Delete(hostsPath);
-
-            File.WriteAllBytes(hostsPath, ms.ToArray());
+            ApplyStreamTransform(hostsPath, (r, w) => this.RemoveFromStream(hostName, r, w));
         }
     }
 }
