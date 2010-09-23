@@ -6,13 +6,18 @@ using System.Management.Automation;
 
 namespace PSHostsFiles.CmdLets
 {
-    [Cmdlet("read", "hostsfile")]
-    public class ReadHostsFile : Cmdlet
+    [Cmdlet("get", "HostsFileEntry")]
+    public class GetHostsFileEntry : Cmdlet
     {
         protected override void EndProcessing()
         {
             foreach(var entry in new Get().LoadFromHostsFiles())
                 base.WriteObject(entry);
         }
+    }
+
+    [Cmdlet("get", "FakeDnsEntry")]
+    public class GetFakeDnsEntry : GetHostsFileEntry
+    {
     }
 }
