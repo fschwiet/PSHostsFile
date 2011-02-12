@@ -1,8 +1,6 @@
-Per-machine setup:
-	installutil /install .\PSHostsFiles.dll
-	
-Per-Powershell session setup:
-	Add-PSSnapin PSHostsFile
+
+import-module .\PSHostsFiles.dll
+
 	
 Commands:
 	get-HostsFileEntry
