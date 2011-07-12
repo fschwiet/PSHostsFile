@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace PSHostsFile
+namespace PSHostsFile.Core
 {
     public class TransformOperation
     {

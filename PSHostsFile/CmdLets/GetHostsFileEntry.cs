@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Management.Automation;
+using PSHostsFile.Core;
 
 
 namespace PSHostsFile.CmdLets
@@ -11,13 +12,8 @@ namespace PSHostsFile.CmdLets
     {
         protected override void EndProcessing()
         {
-            foreach(var entry in new Get().LoadFromHostsFiles())
+            foreach(var entry in HostsFile.Get())
                 base.WriteObject(entry);
         }
-    }
-
-    [Cmdlet("get", "FakeDnsEntry")]
-    public class GetFakeDnsEntry : GetHostsFileEntry
-    {
     }
 }

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using NUnit.Framework;
 using PSHostsFile;
+using PSHostsFile.Core;
 
 namespace PSHostsFileTest
 {

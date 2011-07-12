@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Management.Automation;
 using System.Text;
+using PSHostsFile.Core;
 
 namespace PSHostsFile.CmdLets
 {
@@ -19,10 +20,7 @@ namespace PSHostsFile.CmdLets
 
         protected override void EndProcessing()
         {
-            var hostsPath = Get.GetHostsPath();
-
-            new Remove().RemoveFromFile(HostName, hostsPath);
-            new Add().AddToFile(HostName, Address, hostsPath);
+            HostsFile.Set(HostName, Address);
         }
     }
 }

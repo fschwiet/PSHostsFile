@@ -1,8 +1,13 @@
 
-import-module .\PSHostsFile.dll
+Powershell:
 
-	
-Commands:
-	get-HostsFileEntry
-	remove-HostsFileEntry
-	set-HostsFileEntry
+    import-module .\PSHostsFile.dll
+
+        
+    get-HostsFileEntry
+    remove-HostsFileEntry <hostName>
+    set-HostsFileEntry <hostName> <Address>
+    
+C#:
+
+    Similar methods on PSHostsFile.HostsFile.
