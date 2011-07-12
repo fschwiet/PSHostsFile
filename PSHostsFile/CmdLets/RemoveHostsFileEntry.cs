@@ -4,7 +4,7 @@ using System.IO;
 using System.Management.Automation;
 using System.Text;
 
-namespace PSHostsFiles.CmdLets
+namespace PSHostsFile.CmdLets
 {
     [Cmdlet("remove", "HostsFileEntry")]
     public class RemoveHostsFileEntry : Cmdlet

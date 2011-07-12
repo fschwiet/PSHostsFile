@@ -1,5 +1,5 @@
 
-import-module .\PSHostsFiles.dll
+import-module .\PSHostsFile.dll
 
 	
 Commands:

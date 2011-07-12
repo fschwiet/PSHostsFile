@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace PSHostsFilesTest
+namespace PSHostsFileTest
 {
     class SampleHostsFile
     {

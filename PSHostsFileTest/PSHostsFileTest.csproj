@@ -8,8 +8,8 @@
     <ProjectGuid>{60B55F08-B5A2-4508-B7F7-C32DD637745C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PSHostsFilesTest</RootNamespace>
-    <AssemblyName>PSHostsFilesTest</AssemblyName>
+    <RootNamespace>PSHostsFileTest</RootNamespace>
+    <AssemblyName>PSHostsFileTest</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -60,9 +60,9 @@
     <Compile Include="TransformOperationTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PSHostsFiles\PSHostsFiles.csproj">
+    <ProjectReference Include="..\PSHostsFile\PSHostsFile.csproj">
       <Project>{414C9C89-E5C9-426E-A2E9-DA0A755372C0}</Project>
-      <Name>PSHostsFiles</Name>
+      <Name>PSHostsFile</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

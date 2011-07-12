@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using PSHostsFiles;
+using PSHostsFile;
 
-namespace PSHostsFilesTest
+namespace PSHostsFileTest
 {
     [TestFixture]
     public class AddTest : ReadWriteScenario

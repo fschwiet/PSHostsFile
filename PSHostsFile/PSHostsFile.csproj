@@ -8,8 +8,8 @@
     <ProjectGuid>{414C9C89-E5C9-426E-A2E9-DA0A755372C0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PSHostsFiles</RootNamespace>
-    <AssemblyName>PSHostsFiles</AssemblyName>
+    <RootNamespace>PSHostsFile</RootNamespace>
+    <AssemblyName>PSHostsFile</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PSHostsFilesTest")]
+[assembly: AssemblyTitle("PSHostsFileTest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Frank Schwieterman")]
-[assembly: AssemblyProduct("PSHostsFilesTest")]
+[assembly: AssemblyProduct("PSHostsFileTest")]
 [assembly: AssemblyCopyright("Copyright © Frank Schwieterman 2010")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

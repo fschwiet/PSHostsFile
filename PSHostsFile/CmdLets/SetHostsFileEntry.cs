@@ -4,7 +4,7 @@ using System.Linq;
 using System.Management.Automation;
 using System.Text;
 
-namespace PSHostsFiles.CmdLets
+namespace PSHostsFile.CmdLets
 {
     [Cmdlet("set", "HostsFileEntry")]
     public class SetHostsFileEntry : Cmdlet

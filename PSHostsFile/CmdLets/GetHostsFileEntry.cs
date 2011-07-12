@@ -4,7 +4,7 @@ using System.Text;
 using System.Management.Automation;
 
 
-namespace PSHostsFiles.CmdLets
+namespace PSHostsFile.CmdLets
 {
     [Cmdlet("get", "HostsFileEntry")]
     public class GetHostsFileEntry : Cmdlet

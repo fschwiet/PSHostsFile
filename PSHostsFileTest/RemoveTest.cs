@@ -3,9 +3,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
-using PSHostsFiles;
+using PSHostsFile;
 
-namespace PSHostsFilesTest
+namespace PSHostsFileTest
 {
     [TestFixture]
     public class RemoveTest : ReadWriteScenario

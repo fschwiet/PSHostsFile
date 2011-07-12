@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Text.RegularExpressions;
 
-namespace PSHostsFiles
+namespace PSHostsFile
 {
     public class HostsFileUtil
     {

@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Management.Automation;
 using System.Text;
 
-namespace PSHostsFiles.CmdLets
+namespace PSHostsFile.CmdLets
 {
     [RunInstaller(true)]
     public class SnapIn : PSSnapIn

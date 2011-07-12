@@ -5,7 +5,7 @@ using System.Text;
 using NUnit.Framework;
 using PowerAssert;
 
-namespace PSHostsFilesTest
+namespace PSHostsFileTest
 {
     class AssertStrings
     {

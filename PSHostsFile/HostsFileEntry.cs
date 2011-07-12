@@ -1,4 +1,4 @@
-﻿namespace PSHostsFiles
+﻿namespace PSHostsFile
 {
     public class HostsFileEntry
     {
