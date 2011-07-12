@@ -48,13 +48,13 @@ namespace PSHostsFilesTest
             Encoding ignored;
             var result = ReadFileContents(hostsFile, out ignored);
 
-            Assert.That(result, Is.EqualTo(@"
+            AssertStrings.MatchDespiteNewlines(result, @"
 #line 1 meh
 
 192.168.0.12" + "\t\t" + @"someserver.net
 127.0.0.1           someserver.net
 
-"));
+");
         }
 
     }

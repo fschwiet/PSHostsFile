@@ -13,7 +13,8 @@ namespace PSHostsFilesTest
         [Test]
         public void can_remove_an_entry()
         {
-            var expectedString = SampleHostsFile.AsString.Replace("\r\n192.168.1.1         anotherserver.net", "");
+            var expectedString = SampleHostsFile.AsString.Replace(@"
+192.168.1.1         anotherserver.net", "");
             Assert.That(expectedString, Is.Not.EqualTo(SampleHostsFile.AsString), "verify replace setup actualy did something.");
 
             var hostsFile = SampleHostsFile.AsStreamReader();
@@ -26,7 +27,7 @@ namespace PSHostsFilesTest
             sut.RemoveFromStream("anotherserver.net", hostsFile, resultStream);
 
             result.Seek(0, SeekOrigin.Begin);
-            Assert.That(new StreamReader(result).ReadToEnd(), Is.EqualTo(expectedString));
+            AssertStrings.MatchDespiteNewlines(new StreamReader(result).ReadToEnd(), expectedString);
         }
 
         [Test]
@@ -45,10 +46,10 @@ namespace PSHostsFilesTest
             Encoding encodingUsed;
             string fileContents = ReadFileContents(filename, out encodingUsed);
 
-            Assert.That(fileContents, Is.EqualTo(@"
+            AssertStrings.MatchDespiteNewlines(fileContents, @"
 127.0.0.1           localhost
 
-"));
+");
         }
     }
 }
