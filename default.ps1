@@ -53,7 +53,8 @@ task BuildNuget -depends Build,Test {
         set-xml -exactlyOnce "//ns:licenseUrl" "https://github.com/fschwiet/PSHostsFile/blob/master/LICENSE.txt"
         set-xml -exactlyOnce "//ns:projectUrl" "https://github.com/fschwiet/PSHostsFile/"
         remove-xml -exactlyOnce "//ns:iconUrl"
-        set-xml -exactlyOnce "//ns:tags" "BDD, NUnit"
+        set-xml -exactlyOnce "//ns:tags" "hosts-file"
+        set-xml -exactlyOnce "//ns:description" "Change your window's hosts file from C# or Powershell."
 
         remove-xml -exactlyOnce "//ns:dependencies"
     }
