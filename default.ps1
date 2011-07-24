@@ -47,7 +47,7 @@ task BuildNuget -depends Build,Test {
 
         add-xmlnamespace "ns" "http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"
 
-        set-xml -exactlyOnce "//ns:version" "3.0"
+        set-xml -exactlyOnce "//ns:version" "3.0.1"
         set-xml -exactlyOnce "//ns:owners" "fschwiet"
 
         set-xml -exactlyOnce "//ns:licenseUrl" "https://github.com/fschwiet/PSHostsFile/blob/master/LICENSE.txt"
