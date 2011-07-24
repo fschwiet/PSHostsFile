@@ -1,3 +1,4 @@
+Install via nuget.  Or run .\build.ps1 and use the PSHostsFile.dll.
 
 Powershell:
 
