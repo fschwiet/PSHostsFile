@@ -1,12 +1,25 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace PSHostsFile.Core
 {
     public class Remove : TransformOperation
     {
-        public void RemoveFromFile(string hostName, string hostsPath)
+        public void RemoveFromFile(string target, string hostsPath)
+        {
+            RemoveFromFile(hostsPath,
+                host => host.Equals(target, StringComparison.InvariantCultureIgnoreCase));
+        }
+
+        public void RemoveFromFile(Regex pattern, string hostsPath)
+        {
+            RemoveFromFile(hostsPath,
+                host => pattern.Match(host).Success);
+        }
+
+        private void RemoveFromFile(string hostsPath, Func<string, bool> doHostsMatch)
         {
             TransformFile(hostsPath, lines => lines.Where(l =>
             {
@@ -14,7 +27,9 @@ namespace PSHostsFile.Core
 
                 if (match == null)
                     return true;
-                else if (!match.Host.Equals(hostName, StringComparison.InvariantCultureIgnoreCase))
+
+                var matchedHost = match.Host;
+                if (!doHostsMatch(matchedHost))
                     return true;
                 else
                     return false;
