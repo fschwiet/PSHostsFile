@@ -38,5 +38,17 @@ namespace PSHostsFileTest
         {
             return new StreamReader(new MemoryStream(Encoding.UTF8.GetBytes(AsString)));
         }
+
+        public static string AsFile()
+        {
+            var path = Path.Combine(Path.GetTempPath(), "PSHostsFile.hosts");
+
+            if (File.Exists(path))
+                File.Delete(path);
+
+            File.WriteAllText(path, AsString);
+
+            return path;
+        }
     }
 }

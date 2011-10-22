@@ -14,11 +14,18 @@ namespace PSHostsFileTest
         [Test]
         public void can_read_hosts_file()
         {
-            var hostsFile = SampleHostsFile.AsStreamReader();
+            var hostsFile = SampleHostsFile.AsFile();
+
+            Console.WriteLine("BEFORE:" + File.ReadAllText(hostsFile));
 
             var sut = new Get();
 
-            var results = sut.LoadFromStream(hostsFile);
+            var results = sut.LoadFromHostsFiles(hostsFile);
+
+            foreach(var result in results)
+            {
+                Console.WriteLine("RESULT: " + result.Host + " " + result.Address);
+            }
 
             Assert.True(new KellermanSoftware.CompareNetObjects.CompareObjects().Compare(
                 results.ToArray(), 

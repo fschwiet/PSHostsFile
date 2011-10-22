@@ -38,7 +38,7 @@ namespace PSHostsFileTest
             var hostsFile = GetFileWithContents(@"
 #line 1 meh
 
-127.0.0.1           someserver.net
+127.0.0.1           someotherserver.net
 
 ", Encoding.UTF8);
 
@@ -53,7 +53,7 @@ namespace PSHostsFileTest
 #line 1 meh
 
 192.168.0.12" + "\t\t" + @"someserver.net
-127.0.0.1           someserver.net
+127.0.0.1           someotherserver.net
 
 ");
         }

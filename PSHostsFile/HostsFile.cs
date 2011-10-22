@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using PSHostsFile.Core;
@@ -10,22 +11,31 @@ namespace PSHostsFile
     {
         public static IEnumerable<HostsFileEntry> Get()
         {
-            return new Get().LoadFromHostsFiles();
+            return new Get().LoadFromHostsFiles(GetHostsPath());
         }
 
         public static void Set(string hostName, string address)
         {
-            var hostsPath = Core.Get.GetHostsPath();
+            var hostsPath = GetHostsPath();
 
-            new Remove().RemoveFromFile(hostName, hostsPath);
             new Add().AddToFile(hostName, address, hostsPath);
         }
 
         public static void Remove(string hostName)
         {
-            var hostsPath = Core.Get.GetHostsPath();
+            var hostsPath = GetHostsPath();
 
             new Remove().RemoveFromFile(hostName, hostsPath);
+        }
+
+        public static string GetHostsPath()
+        {
+            var systemPath = Environment.GetEnvironmentVariable("SystemRoot");
+            var hostsPath = Path.Combine(systemPath, "system32\\drivers\\etc\\hosts");
+
+            if (!File.Exists(hostsPath))
+                throw new FileNotFoundException("Hosts file not found at expected location.");
+            return hostsPath;
         }
     }
 }
