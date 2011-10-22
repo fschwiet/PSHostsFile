@@ -14,11 +14,11 @@ namespace PSHostsFile
             return new Get().LoadFromHostsFiles(GetHostsPath());
         }
 
-        public static void Set(string hostName, string address)
+        public static void Set(string hostName, string ipAddress)
         {
             var hostsPath = GetHostsPath();
 
-            new Add().AddToFile(hostName, address, hostsPath);
+            new Add().AddToFile(hostName, ipAddress, hostsPath);
         }
 
         public static void Remove(string hostName)
