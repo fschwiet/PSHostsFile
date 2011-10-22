@@ -45,18 +45,17 @@ task BuildNuget -depends Build,Test {
 
     update-xml "PSHostsFile.nuspec" {
 
-        add-xmlnamespace "ns" "http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd"
+        set-xml -exactlyOnce "//version" "3.0.1"
+        set-xml -exactlyOnce "//owners" "fschwiet"
 
-        set-xml -exactlyOnce "//ns:version" "3.0.1"
-        set-xml -exactlyOnce "//ns:owners" "fschwiet"
+        set-xml -exactlyOnce "//licenseUrl" "https://github.com/fschwiet/PSHostsFile/blob/master/LICENSE.txt"
+        set-xml -exactlyOnce "//projectUrl" "https://github.com/fschwiet/PSHostsFile/"
+        remove-xml -exactlyOnce "//iconUrl"
+        set-xml -exactlyOnce "//tags" "hosts-file hosts dns"
+        set-xml -exactlyOnce "//description" "Change your window's hosts file from C# or Powershell."
+        set-xml -exactlyOnce "//releaseNotes" ""
 
-        set-xml -exactlyOnce "//ns:licenseUrl" "https://github.com/fschwiet/PSHostsFile/blob/master/LICENSE.txt"
-        set-xml -exactlyOnce "//ns:projectUrl" "https://github.com/fschwiet/PSHostsFile/"
-        remove-xml -exactlyOnce "//ns:iconUrl"
-        set-xml -exactlyOnce "//ns:tags" "hosts-file"
-        set-xml -exactlyOnce "//ns:description" "Change your window's hosts file from C# or Powershell."
-
-        remove-xml -exactlyOnce "//ns:dependencies"
+        remove-xml -exactlyOnce "//dependencies"
     }
 
     ..\..\tools\nuget pack "PSHostsFile.nuspec"
