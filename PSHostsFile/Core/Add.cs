@@ -1,37 +1,35 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 
 namespace PSHostsFile.Core
 {
-    public class Add : TransformOperation
+    public class Add
     {
         public void AddToFile(string hostName, string address, string hostsFile)
         {
             new Remove().RemoveFromFile(hostName, hostsFile);
 
-            ApplyStreamTransform(hostsFile, (r, w) =>
-                {
-                    string line;
+            var contents = File.ReadAllLines(hostsFile);
 
-                    while ((line = r.ReadLine()) != null)
-                    {
-                        if (HostsFileUtil.IsLineAHostFilesEntry(line))
-                        {
-                            break;
-                        }
+            List<string> result = new List<string>();
 
-                        w.WriteLine(line);
-                    }
+            int index = 0;
 
-                    w.WriteLine(address + "\t\t" + hostName);
+            while(index < contents.Length && !HostsFileUtil.IsLineAHostFilesEntry(contents[index]))
+            {
+                result.Add(contents[index]);
+                index++;
+            }
 
-                    if (line != null)
-                        w.WriteLine(line);
+            result.Add(address + "\t\t" + hostName);
 
-                    while ((line = r.ReadLine()) != null)
-                    {
-                        w.WriteLine(line);
-                    }
-                });
+            while (index < contents.Length)
+            {
+                result.Add(contents[index]);
+                index++;
+            }
+
+            File.WriteAllLines(hostsFile, result.ToArray());
         }
     }
 }

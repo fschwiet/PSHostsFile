@@ -16,16 +16,9 @@ namespace PSHostsFileTest
         {
             var hostsFile = SampleHostsFile.AsFile();
 
-            Console.WriteLine("BEFORE:" + File.ReadAllText(hostsFile));
-
             var sut = new Get();
 
             var results = sut.LoadFromHostsFiles(hostsFile);
-
-            foreach(var result in results)
-            {
-                Console.WriteLine("RESULT: " + result.Host + " " + result.Address);
-            }
 
             Assert.True(new KellermanSoftware.CompareNetObjects.CompareObjects().Compare(
                 results.ToArray(), 
