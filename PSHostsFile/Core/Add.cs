@@ -1,16 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace PSHostsFile.Core
 {
-    public class Add
+    public class Add : TransformOperation
     {
         public void AddToFile(string hostName, string address, string hostsFile)
         {
             new Remove().RemoveFromFile(hostName, hostsFile);
 
-            var contents = File.ReadAllLines(hostsFile);
+            TransformFile(hostsFile, lines => Transform(lines.ToArray(), hostName, address));
+        }
 
+        private List<string> Transform(string[] contents, string hostName, string address)
+        {
             List<string> result = new List<string>();
 
             int index = 0;
@@ -28,8 +33,7 @@ namespace PSHostsFile.Core
                 result.Add(contents[index]);
                 index++;
             }
-
-            File.WriteAllLines(hostsFile, result.ToArray());
+            return result;
         }
     }
 }

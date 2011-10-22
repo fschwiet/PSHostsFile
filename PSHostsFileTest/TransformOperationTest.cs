@@ -33,14 +33,7 @@ namespace PSHostsFileTest
 
             string filename = GetFileWithContents(expectedContents, encoding);
 
-            TransformOperation.ApplyStreamTransform(filename, (r,w) =>
-                {
-                    string line;
-                    while((line = r.ReadLine()) != null)
-                    {
-                        w.WriteLine(line);
-                    }
-                });
+            TransformOperation.TransformFile(filename, lines => lines);
 
             Encoding encodingUsed;
             string fileContents = ReadFileContents(filename, out encodingUsed);

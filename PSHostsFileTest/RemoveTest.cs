@@ -18,17 +18,11 @@ namespace PSHostsFileTest
 192.168.1.1         anotherserver.net", "");
             Assert.That(expectedString, Is.Not.EqualTo(SampleHostsFile.AsString), "verify replace setup actualy did something.");
 
-            var hostsFile = SampleHostsFile.AsStreamReader();
+            var hostsFile = SampleHostsFile.AsFile();
 
-            var result = new MemoryStream();
-            var resultStream = new StreamWriter(result);
+            new Remove().RemoveFromFile("anotherserver.net", hostsFile);
 
-            var sut = new Remove();
-
-            sut.RemoveFromStream("anotherserver.net", hostsFile, resultStream);
-
-            result.Seek(0, SeekOrigin.Begin);
-            AssertStrings.MatchDespiteNewlines(new StreamReader(result).ReadToEnd(), expectedString);
+            AssertFile.MatchesIgnoringNewlines(hostsFile, expectedString);
         }
 
         [Test]
@@ -44,10 +38,7 @@ namespace PSHostsFileTest
          
             sut.RemoveFromFile("somehost", filename);
 
-            Encoding encodingUsed;
-            string fileContents = ReadFileContents(filename, out encodingUsed);
-
-            AssertStrings.MatchDespiteNewlines(fileContents, @"
+            AssertFile.MatchesIgnoringNewlines(filename, @"
 127.0.0.1           localhost
 
 ");

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using NUnit.Framework;
@@ -46,10 +47,7 @@ namespace PSHostsFileTest
 
             sut.AddToFile(hostName, address, hostsFile);
 
-            Encoding ignored;
-            var result = ReadFileContents(hostsFile, out ignored);
-
-            AssertStrings.MatchDespiteNewlines(result, @"
+            AssertFile.MatchesIgnoringNewlines(hostsFile, @"
 #line 1 meh
 
 192.168.0.12" + "\t\t" + @"someserver.net

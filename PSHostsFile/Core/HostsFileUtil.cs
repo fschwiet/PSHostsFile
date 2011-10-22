@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace PSHostsFile.Core
@@ -37,6 +38,15 @@ namespace PSHostsFile.Core
                     Address =  match.Groups["address"].Value,
                     Host = match.Groups["name"].Value
                 };
+        }
+
+        static public Encoding GetEncoding(string file)
+        {
+            using(var reader = new StreamReader(file))
+            {
+                reader.Peek();
+                return reader.CurrentEncoding;
+            }
         }
 
         static Regex RegexHostsEntry = new Regex(@"^\s*(?<address>\S+)\s+(?<name>\S+)\s*($|#)", RegexOptions.Compiled);

@@ -1,30 +1,24 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 
 namespace PSHostsFile.Core
 {
     public class Remove : TransformOperation
     {
-        public void RemoveFromStream(string serverName, StreamReader hostsFile, StreamWriter results)
-        {
-            string line;
-
-            while ((line = hostsFile.ReadLine()) != null)
-            {
-                var match = HostsFileUtil.TryGetHostsFileEntry(line);
-
-                if (match == null)
-                    results.WriteLine(line);
-                else if (!match.Host.Equals(serverName, StringComparison.InvariantCultureIgnoreCase))
-                    results.WriteLine(line);
-            }
-
-            results.Flush();
-        }
-
         public void RemoveFromFile(string hostName, string hostsPath)
         {
-            ApplyStreamTransform(hostsPath, (r, w) => this.RemoveFromStream(hostName, r, w));
+            TransformFile(hostsPath, lines => lines.Where(l =>
+            {
+                var match = HostsFileUtil.TryGetHostsFileEntry(l);
+
+                if (match == null)
+                    return true;
+                else if (!match.Host.Equals(hostName, StringComparison.InvariantCultureIgnoreCase))
+                    return true;
+                else
+                    return false;
+            }));
         }
     }
 }

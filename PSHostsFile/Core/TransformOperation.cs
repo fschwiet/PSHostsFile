@@ -1,29 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 namespace PSHostsFile.Core
 {
     public class TransformOperation
     {
-        public static void ApplyStreamTransform(string targetFile, Action<StreamReader, StreamWriter> transform)
+        public static void TransformFile(string hostsFile, Func<IEnumerable<string>, IEnumerable<string>> transform)
         {
-            var ms = new MemoryStream();
-            StreamReader streamReader;
+            var encoding = HostsFileUtil.GetEncoding(hostsFile);
+            var contents = File.ReadAllLines(hostsFile);
 
-            using (var file = File.Open(targetFile, FileMode.Open, FileAccess.Read))
-            {
-                streamReader = new StreamReader(file);
-                streamReader.Peek();
-                var streamWriter = new StreamWriter(ms, streamReader.CurrentEncoding);
+            var result = transform(contents);
 
-                transform(streamReader, streamWriter);
-                
-                streamWriter.Flush();
-            }
-
-            File.Delete(targetFile);
-
-            File.WriteAllBytes(targetFile, ms.ToArray());
+            File.WriteAllLines(hostsFile, result.ToArray(), encoding);
         }
     }
 }
