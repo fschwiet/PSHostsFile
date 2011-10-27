@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using PSHostsFile.Core;
 
 namespace PSHostsFile
@@ -26,6 +27,13 @@ namespace PSHostsFile
             var hostsPath = GetHostsPath();
 
             new Remove().RemoveFromFile(hostName, hostsPath);
+        }
+
+        public static void Remove(Regex pattern)
+        {
+            var hostsPath = GetHostsPath();
+
+            new Remove().RemoveFromFile(pattern, hostsPath);
         }
 
         public static string GetHostsPath()
