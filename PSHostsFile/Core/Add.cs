@@ -9,9 +9,12 @@ namespace PSHostsFile.Core
     {
         public void AddToFile(string hostName, string address, string hostsFile)
         {
-            new Remove().RemoveFromFile(hostName, hostsFile);
+            List<Func<IEnumerable<string>, IEnumerable<string>>> transforms = new List<Func<IEnumerable<string>, IEnumerable<string>>>();
+            
+            transforms.Add(Remove.GetRemoveTransformForHost(hostName));
+            transforms.Add(lines => Transform(lines.ToArray(), hostName, address));
 
-            TransformFile(hostsFile, lines => Transform(lines.ToArray(), hostName, address));
+            TransformFile(hostsFile, transforms.ToArray());
         }
 
         private IEnumerable<string> Transform(IEnumerable<string> contents, string hostName, string address)
