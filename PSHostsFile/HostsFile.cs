@@ -19,7 +19,7 @@ namespace PSHostsFile
         {
             var hostsPath = GetHostsPath();
 
-            new Add().AddToFile(hostName, ipAddress, hostsPath);
+            new Add().AddToFile(hostsPath, new Add.Entry(hostName, ipAddress));
         }
 
         public static void Remove(string hostName)

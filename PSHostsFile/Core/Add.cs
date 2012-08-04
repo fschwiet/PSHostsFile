@@ -7,12 +7,27 @@ namespace PSHostsFile.Core
 {
     public class Add : TransformOperation
     {
-        public void AddToFile(string hostName, string address, string hostsFile)
+        public class Entry
+        {
+            public string Hostname;
+            public string Address;
+
+            public Entry(string hostname, string address)
+            {
+                Hostname = hostname;
+                Address = address;
+            }
+        }
+
+        public void AddToFile(string hostsFile, params Entry[] entries)
         {
             List<Func<IEnumerable<string>, IEnumerable<string>>> transforms = new List<Func<IEnumerable<string>, IEnumerable<string>>>();
             
-            transforms.Add(Remove.GetRemoveTransformForHost(hostName));
-            transforms.Add(lines => Transform(lines.ToArray(), hostName, address));
+            foreach(var entry in entries)
+            {
+                transforms.Add(Remove.GetRemoveTransformForHost(entry.Hostname));
+                transforms.Add(lines => Transform(lines.ToArray(), entry.Hostname, entry.Address));
+            }
 
             TransformFile(hostsFile, transforms.ToArray());
         }

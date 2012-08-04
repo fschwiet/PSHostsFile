@@ -22,7 +22,7 @@ namespace PSHostsFileTest
 
             var sut = new Add();
 
-            sut.AddToFile(hostName, address, hostsFile);
+            sut.AddToFile(hostsFile, new Add.Entry(hostName, address));
 
             Encoding ignored;
             var result = ReadFileContents(hostsFile, out ignored);
@@ -45,7 +45,7 @@ namespace PSHostsFileTest
 
             var sut = new Add();
 
-            sut.AddToFile(hostName, address, hostsFile);
+            sut.AddToFile(hostsFile, new Add.Entry(hostName, address));
 
             AssertFile.MatchesIgnoringNewlines(hostsFile, @"
 #line 1 meh
