@@ -14,26 +14,40 @@ namespace PSHostsFile.Core
             TransformFile(hostsFile, lines => Transform(lines.ToArray(), hostName, address));
         }
 
-        private List<string> Transform(string[] contents, string hostName, string address)
+        private IEnumerable<string> Transform(IEnumerable<string> contents, string hostName, string address)
         {
             List<string> result = new List<string>();
 
-            int index = 0;
+            var needsInsert = true;
 
-            while(index < contents.Length && !HostsFileUtil.IsLineAHostFilesEntry(contents[index]))
+            foreach(var line in contents)
             {
-                result.Add(contents[index]);
-                index++;
+                if (!HostsFileUtil.IsLineAHostFilesEntry(line))
+                {
+                    result.Add(line);
+                    continue;
+                }
+ 
+                if (needsInsert)
+                {
+                    result.Add(GetHostLine(hostName, address));
+                    needsInsert = false;
+                }
+                result.Add(line);
             }
 
-            result.Add(address + "\t\t" + hostName);
-
-            while (index < contents.Length)
+            if (needsInsert)
             {
-                result.Add(contents[index]);
-                index++;
+                result.Add(GetHostLine(hostName, address));
+                needsInsert = false;
             }
+
             return result;
+        }
+
+        private static string GetHostLine(string hostName, string address)
+        {
+            return address + "\t\t" + hostName;
         }
     }
 }
