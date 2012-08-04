@@ -45,7 +45,7 @@ task BuildNuget -depends Build,Test {
 
     update-xml "PSHostsFile.nuspec" {
 
-        set-xml -exactlyOnce "//version" "3.0.3"
+        set-xml -exactlyOnce "//version" "3.0.4"
         set-xml -exactlyOnce "//owners" "fschwiet"
 
         set-xml -exactlyOnce "//licenseUrl" "https://github.com/fschwiet/PSHostsFile/blob/master/LICENSE.txt"
