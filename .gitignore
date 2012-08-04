@@ -9,3 +9,5 @@ _ReSharper.*
 *.aps
 *.suo
 *.sln.cache
+*.user
+
