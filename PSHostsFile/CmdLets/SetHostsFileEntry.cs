@@ -10,12 +10,10 @@ namespace PSHostsFile.CmdLets
     [Cmdlet("set", "HostsFileEntry")]
     public class SetHostsFileEntry : Cmdlet
     {
-        [Parameter(Mandatory = true, HelpMessage = @"The hostname to be added to c:\windows\system32\drivers\etc\hosts",
-            ValueFromPipeline = true)]
+        [Parameter(Mandatory = true, HelpMessage = @"The hostname to be added to c:\windows\system32\drivers\etc\hosts",Position = 0)]
         public string HostName;
 
-        [Parameter(Mandatory = true, HelpMessage = @"The static IP address to be associated with the host",
-            ValueFromRemainingArguments = true)]
+        [Parameter(Mandatory = true, HelpMessage = @"The static IP address to be associated with the host", Position = 1)]
         public string Address;
 
         protected override void EndProcessing()
