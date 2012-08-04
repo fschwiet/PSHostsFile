@@ -7,14 +7,17 @@ namespace PSHostsFile.Core
 {
     public class TransformOperation
     {
-        public static void TransformFile(string hostsFile, Func<IEnumerable<string>, IEnumerable<string>> transform)
+        public static void TransformFile(string hostsFile, params Func<IEnumerable<string>, IEnumerable<string>>[] transforms)
         {
             var encoding = HostsFileUtil.GetEncoding(hostsFile);
-            var contents = File.ReadAllLines(hostsFile);
+            IEnumerable<string> contents = File.ReadAllLines(hostsFile);
 
-            var result = transform(contents);
+            foreach(var transform in transforms)
+            {
+                contents = transform(contents);
+            }
 
-            File.WriteAllLines(hostsFile, result.ToArray(), encoding);
+            File.WriteAllLines(hostsFile, contents.ToArray(), encoding);
         }
     }
 }
