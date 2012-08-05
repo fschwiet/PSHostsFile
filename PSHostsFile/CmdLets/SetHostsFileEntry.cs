@@ -16,9 +16,13 @@ namespace PSHostsFile.CmdLets
         [Parameter(Mandatory = true, HelpMessage = @"The static IP address to be associated with the host", Position = 1)]
         public string Address;
 
+        [Parameter(Mandatory = false, HelpMessage = @"Hosts filepath (defaults to SystemRoot\system32\drivers\etc\hosts).")]
+        [Alias("f")]
+        public string FilePath;
+
         protected override void EndProcessing()
         {
-            HostsFile.Set(HostName, Address);
+            HostsFile.Set(HostName, Address, FilePath);
         }
     }
 }

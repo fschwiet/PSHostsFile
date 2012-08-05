@@ -21,11 +21,11 @@ namespace PSHostsFile
                 .Select(l => HostsFileUtil.GetHostsFileEntry(l));
         }
 
-        public static void Set(string hostName, string ipAddress)
+        public static void Set(string hostName, string ipAddress, string filepath = null)
         {
-            var hostsPath = GetHostsPath();
+            filepath = filepath ?? GetHostsPath();
 
-            new Add().AddToFile(hostsPath, new Add.Entry(hostName, ipAddress));
+            new Add().AddToFile(filepath, new Add.Entry(hostName, ipAddress));
         }
 
         public static void Remove(string hostName)
