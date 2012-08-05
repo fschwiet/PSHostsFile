@@ -35,15 +35,24 @@
     <Reference Include="KellermanSoftware.Compare-NET-Objects">
       <HintPath>..\lib\Compare-NET-Objects-Source\KellermanSoftware.Compare-NET-Objects.dll</HintPath>
     </Reference>
-    <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
+    <Reference Include="NJasmine">
+      <HintPath>..\packages\NJasmine.NUnit.0.2.4.0\lib\NJasmine.dll</HintPath>
+    </Reference>
+    <Reference Include="NJasmine.NUnit">
+      <HintPath>..\packages\NJasmine.NUnit.0.2.4.0\lib\NJasmine.NUnit.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.6.0.12051, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.2.6.0.12054\lib\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="PowerAssert">
       <HintPath>..\packages\PowerAssert.1.0.2\lib\PowerAssert.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management.Automation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\WindowsPowerShell\v1.0\System.Management.Automation.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -52,6 +61,7 @@
   <ItemGroup>
     <Compile Include="AddTest.cs" />
     <Compile Include="AssertFile.cs" />
+    <Compile Include="BetterTests\Can_test_cmdlet_implementation.cs" />
     <Compile Include="GetTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadWriteScenario.cs" />

@@ -10,9 +10,10 @@ namespace PSHostsFile
 {
     public class HostsFile
     {
-        public static IEnumerable<HostsFileEntry> Get()
+        public static IEnumerable<HostsFileEntry> Get(string filepath = null)
         {
-            return new Get().LoadFromHostsFiles(GetHostsPath());
+            filepath = filepath ?? GetHostsPath();
+            return new Get().LoadFromHostsFiles(filepath);
         }
 
         public static void Set(string hostName, string ipAddress)
