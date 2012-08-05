@@ -62,7 +62,6 @@
     <Compile Include="AddTest.cs" />
     <Compile Include="AssertFile.cs" />
     <Compile Include="BetterTests\Can_test_cmdlet_implementation.cs" />
-    <Compile Include="GetTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadWriteScenario.cs" />
     <Compile Include="RemoveTest.cs" />

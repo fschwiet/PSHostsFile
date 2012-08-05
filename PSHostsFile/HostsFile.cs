@@ -13,7 +13,12 @@ namespace PSHostsFile
         public static IEnumerable<HostsFileEntry> Get(string filepath = null)
         {
             filepath = filepath ?? GetHostsPath();
-            return new Get().LoadFromHostsFiles(filepath);
+            
+            var lines = File.ReadAllLines(filepath);
+
+            return lines
+                .Where(l => HostsFileUtil.IsLineAHostFilesEntry(l))
+                .Select(l => HostsFileUtil.GetHostsFileEntry(l));
         }
 
         public static void Set(string hostName, string ipAddress)
