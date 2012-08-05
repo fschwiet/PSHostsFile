@@ -10,19 +10,57 @@ namespace PSHostsFile.CmdLets
     [Cmdlet("set", "HostsFileEntry")]
     public class SetHostsFileEntry : Cmdlet
     {
-        [Parameter(Mandatory = true, HelpMessage = @"The hostname to be added to c:\windows\system32\drivers\etc\hosts",Position = 0)]
+        [Parameter(HelpMessage = @"The hostname to be added to c:\windows\system32\drivers\etc\hosts",Position = 0)]
         public string HostName;
 
-        [Parameter(Mandatory = true, HelpMessage = @"The static IP address to be associated with the host", Position = 1)]
+        [Parameter(HelpMessage = @"The static IP address to be associated with the host", Position = 1)]
         public string Address;
+
+        [Parameter(Mandatory = false,
+            ValueFromPipeline = true,
+            HelpMessage = "Pair of hostname, address")] //, ValidateCount(2,2)]
+        public object InputObject
+        {
+            get { return _input; }
+            set { _input = value; }
+        }
+        private object _input;
 
         [Parameter(Mandatory = false, HelpMessage = @"Hosts filepath (defaults to SystemRoot\system32\drivers\etc\hosts).")]
         [Alias("f")]
         public string FilePath;
 
+        List<HostsFileEntry> ValuesToSet;
+
+        protected override void BeginProcessing()
+        {
+            ValuesToSet = new List<HostsFileEntry>();
+        }
+
+        protected override void ProcessRecord()
+        {
+            if (_input == null)
+                return;
+
+            var input = (_input as PSObject).BaseObject as object[];
+
+            var hostname = (string)input[0];
+            var address = (string)input[1];
+            ValuesToSet.Add(new HostsFileEntry(hostname, address));
+            base.ProcessRecord();
+        }
+
         protected override void EndProcessing()
         {
-            HostsFile.Set(HostName, Address, FilePath);
+            if (HostName != null && Address != null)
+            {
+                ValuesToSet.Add(new HostsFileEntry(HostName, Address));
+            }
+
+            if (!ValuesToSet.Any())
+                throw new Exception("Must pass pass a hostname and address as parameters, or input string must be a contain some number of host/address pairs.");
+
+            HostsFile.Set(ValuesToSet, FilePath);
         }
     }
 }

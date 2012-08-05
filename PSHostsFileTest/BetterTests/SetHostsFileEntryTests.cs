@@ -50,6 +50,24 @@ namespace PSHostsFileTest.BetterTests
 
 ");                
             });
+
+            it("can set multiple host files at once", () =>
+            {
+                var hostsFile = ReadWriteScenario.GetFileWithContents(@"", Encoding.UTF8);
+
+                using (var command = configuredRunspace.CreatePipeline(
+                    string.Format("@(@('someserver.net', '192.168.0.12'), @('someOtherServer.net', '192.168.0.1')) | set-HostsFileEntry -f \"{0}\"", hostsFile)))
+                {
+                    var results = command.Invoke();
+
+                    expect(() => results.Count() == 0);
+                }
+
+                Encoding ignored;
+                var result = ReadWriteScenario.ReadFileContents(hostsFile, out ignored);
+
+                expect(() => result == "192.168.0.12\t\tsomeserver.net\r\n192.168.0.1\t\tsomeOtherServer.net\r\n");
+            });
         }
 
         void run_set_host_command(Runspace configuredRunspace, string hostName, string address, string hostsFile)

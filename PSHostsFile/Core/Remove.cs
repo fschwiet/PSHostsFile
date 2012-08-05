@@ -32,7 +32,7 @@ namespace PSHostsFile.Core
                 if (match == null)
                     return true;
 
-                var matchedHost = match.Host;
+                var matchedHost = match.Hostname;
                 if (!doHostsMatch(matchedHost))
                     return true;
                 else

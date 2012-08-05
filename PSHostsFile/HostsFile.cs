@@ -21,16 +21,23 @@ namespace PSHostsFile
                 .Select(l => HostsFileUtil.GetHostsFileEntry(l));
         }
 
-        public static void Set(string hostName, string ipAddress, string filepath = null)
+        public static void Set(string hostname, string address, string filepath = null)
+        {
+            Set(new[] { new HostsFileEntry(hostname, address), }, filepath);
+        }
+
+        public static void Set(IEnumerable<HostsFileEntry> entries, string filepath = null)
         {
             filepath = filepath ?? GetHostsPath();
 
             List<Func<IEnumerable<string>, IEnumerable<string>>> transforms = new List<Func<IEnumerable<string>, IEnumerable<string>>>();
             
-            foreach(var entry in new HostsFile.Entry[] { new HostsFile.Entry(hostName, ipAddress)})
+            foreach(var entry in entries.Reverse())
             {
-                transforms.Add(Core.Remove.GetRemoveTransformForHost(entry.Hostname));
-                transforms.Add(lines => GetSetHostTransform(lines.ToArray(), entry.Hostname, entry.Address));
+                string hostName = entry.Hostname;
+                string address = entry.Address;
+                transforms.Add(Core.Remove.GetRemoveTransformForHost(hostName));
+                transforms.Add(lines => GetSetHostTransform(lines.ToArray(), hostName, address));
             }
 
             TransformOperation.TransformFile(filepath, transforms.ToArray());
@@ -58,18 +65,6 @@ namespace PSHostsFile
             if (!File.Exists(hostsPath))
                 throw new FileNotFoundException("Hosts file not found at expected location.");
             return hostsPath;
-        }
-
-        public class Entry
-        {
-            public string Hostname;
-            public string Address;
-
-            public Entry(string hostname, string address)
-            {
-                Hostname = hostname;
-                Address = address;
-            }
         }
 
         public static IEnumerable<string> GetSetHostTransform(IEnumerable<string> contents, string hostName, string address)

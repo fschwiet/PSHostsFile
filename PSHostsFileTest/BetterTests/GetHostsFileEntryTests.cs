@@ -27,8 +27,8 @@ namespace PSHostsFileTest.BetterTests
 
                     var results = psResults.Select(r => r.BaseObject).Cast<HostsFileEntry>();
 
-                    expect(() => results.Single(r => r.Host == "www.testserver.com").Address == "127.0.0.1");
-                    expect(() => results.Single(r => r.Host == "anotherserver.net").Address == "192.168.1.1");
+                    expect(() => results.Single(r => r.Hostname == "www.testserver.com").Address == "127.0.0.1");
+                    expect(() => results.Single(r => r.Hostname == "anotherserver.net").Address == "192.168.1.1");
                 }
             });
         }
