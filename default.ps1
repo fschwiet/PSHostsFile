@@ -23,7 +23,7 @@ task Build -depends Cleanup {
 
 task Test -depends Build {
 
-	exec { & "$baseDirectory\packages\NUnit.2.5.10.11092\tools\nunit-console.exe" $buildDirectory\PSHostsFileTest.dll /xml "$buildDirectory\TestResults.xml" }
+	exec { & "$baseDirectory\packages\NUnit.Runners.2.6.0.12051\tools\nunit-console.exe" $buildDirectory\PSHostsFileTest.dll /xml "$buildDirectory\TestResults.xml" }
 }
 
 task BuildNuget -depends Build,Test {

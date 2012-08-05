@@ -60,7 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssertFile.cs" />
-    <Compile Include="BetterTests\Can_stream_input.cs" />
     <Compile Include="BetterTests\SetHostsFileEntryTests.cs" />
     <Compile Include="BetterTests\GetHostsFileEntryTests.cs" />
     <Compile Include="BetterTests\PowershallRunspaceFactory.cs" />

@@ -57,7 +57,6 @@
     <Compile Include="CmdLets\Snapin.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Core\Get.cs" />
     <Compile Include="Core\HostsFileUtil.cs" />
     <Compile Include="Core\Remove.cs" />
     <Compile Include="Core\TransformOperation.cs" />
