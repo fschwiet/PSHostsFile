@@ -10,3 +10,4 @@ _ReSharper.*
 *.suo
 *.sln.cache
 *.user
+TestResult.xml

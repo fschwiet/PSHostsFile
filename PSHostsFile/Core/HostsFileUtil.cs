@@ -33,11 +33,7 @@ namespace PSHostsFile.Core
             if (!match.Success)
                 return null;
 
-            return new HostsFileEntry()
-                {
-                    Address =  match.Groups["address"].Value,
-                    Host = match.Groups["name"].Value
-                };
+            return new HostsFileEntry(match.Groups["name"].Value, match.Groups["address"].Value);
         }
 
         static public Encoding GetEncoding(string file)

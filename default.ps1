@@ -23,7 +23,7 @@ task Build -depends Cleanup {
 
 task Test -depends Build {
 
-	exec { & "$baseDirectory\packages\NUnit.2.5.10.11092\tools\nunit-console.exe" $buildDirectory\PSHostsFileTest.dll /xml "$buildDirectory\TestResults.xml" }
+	exec { & "$baseDirectory\packages\NUnit.Runners.2.6.0.12051\tools\nunit-console.exe" $buildDirectory\PSHostsFileTest.dll /xml "$buildDirectory\TestResults.xml" }
 }
 
 task BuildNuget -depends Build,Test {
@@ -45,7 +45,7 @@ task BuildNuget -depends Build,Test {
 
     update-xml "PSHostsFile.nuspec" {
 
-        set-xml -exactlyOnce "//version" "3.0.2"
+        set-xml -exactlyOnce "//version" "3.0.5"
         set-xml -exactlyOnce "//owners" "fschwiet"
 
         set-xml -exactlyOnce "//licenseUrl" "https://github.com/fschwiet/PSHostsFile/blob/master/LICENSE.txt"
