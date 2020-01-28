@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using PowerAssert;
 using System.IO;
-using System.Linq;
-using System.Text;
-using NUnit.Framework;
-using PowerAssert;
 
 namespace PSHostsFileTest
 {

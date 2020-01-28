@@ -1,11 +1,7 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using NUnit.Framework;
+using PSHostsFile.Core;
 using System.Text;
 using System.Text.RegularExpressions;
-using NUnit.Framework;
-using PSHostsFile;
-using PSHostsFile.Core;
 
 namespace PSHostsFileTest
 {
