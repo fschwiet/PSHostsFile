@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Management.Automation;
-using System.Text;
-using PSHostsFile.Core;
+﻿using System.Management.Automation;
 
 namespace PSHostsFile.CmdLets
 {

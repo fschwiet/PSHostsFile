@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NJasmine;
+using PSHostsFile;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Management.Automation;
-using System.Management.Automation.Runspaces;
-using System.Text;
-using NJasmine;
-using PSHostsFile;
-using PSHostsFile.CmdLets;
 
 namespace PSHostsFileTest.BetterTests
 {

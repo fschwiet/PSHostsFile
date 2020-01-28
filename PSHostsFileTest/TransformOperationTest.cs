@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NUnit.Framework;
+using PSHostsFile.Core;
+using System;
 using System.Linq;
 using System.Text;
-using NUnit.Framework;
-using PSHostsFile;
-using PSHostsFile.Core;
 
 namespace PSHostsFileTest
 {

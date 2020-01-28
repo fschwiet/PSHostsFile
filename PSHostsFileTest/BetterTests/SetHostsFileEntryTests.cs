@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NJasmine;
 using System.Linq;
 using System.Management.Automation.Runspaces;
 using System.Text;
-using NJasmine;
 
 namespace PSHostsFileTest.BetterTests
 {

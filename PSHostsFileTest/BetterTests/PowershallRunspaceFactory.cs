@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using PSHostsFile.CmdLets;
 using System.Linq;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
-using System.Text;
-using PSHostsFile.CmdLets;
 
 namespace PSHostsFileTest.BetterTests
 {
